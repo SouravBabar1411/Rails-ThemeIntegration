@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Comments</h1>
+
+<table class="table table-bordered table-striped" id='comment'>
+  <thead class="table-dark">
+    <tr>
+      <th>Post</th>
+      <th>Comment</th>
+      <th>Button</th>
+    </tr>
+  </thead>
+
+ <tbody>
+    <% @comments.each do |comment| %>
+      <tr>
+         <td><%= comment.post.title %></td>
+        <td><%= comment.comment %></td>
+        <td><%= link_to 'Edit', edit_sport_post_comment_path(@sport,@post,comment),class:"btn btn-success" %>
+            <%= link_to 'Destroy', [@sport,@post, comment], method: :delete, data: { confirm: 'Are you sure?' },class:"btn btn-success" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>

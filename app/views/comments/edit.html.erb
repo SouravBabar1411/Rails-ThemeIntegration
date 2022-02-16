@@ -1,0 +1,6 @@
+<h1>Editing Comment</h1>
+
+<%= render 'form', comment: @comment %><br>
+
+<%= link_to 'Show', [@sport, @post, @comment], class:"btn btn-secondary" %> |
+<%= link_to 'Back', sport_post_comments_path(@sport,@post), class:"btn btn-secondary" %>

@@ -1,0 +1,46 @@
+<p id="notice"><%= notice %></p>
+
+<img src="<%= @player.image %>" class= "player-show">
+
+<p>
+  <strong>Player name:</strong>
+  <%= @player.player_name %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @player.email%>
+</p>
+
+<p>
+  <strong>game name:</strong>
+  <%= @player.sport.sport_name %>
+</p>
+
+
+<p>
+  <strong>Player city:</strong>
+  <%= @player.player_city %>
+</p>
+
+<p>
+  <strong>Player state:</strong>
+  <%= @player.player_state %>
+</p>
+
+<p>
+  <strong>Player country:</strong>
+  <%= @player.player_country %>
+</p>
+
+<p>
+  <strong>Phone:</strong>
+  <%= @player.phone %>
+</p>
+
+<p>
+  <strong>Gender:</strong>
+  <%= @player.gender %>
+</p>
+  <%= link_to 'Edit', edit_sport_player_path(@sport, @player), class:"btn btn-secondary" %> 
+<%= link_to 'Back',sport_players_path(@sport), class:"btn btn-secondary" %>

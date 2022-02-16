@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Achievements</h1>
+
+<table class="table table-bordered table-striped" id='achievement'>
+  <thead class="table-dark">
+    <tr>
+      <th>Player</th>
+      <th>Award</th>
+      <th>Medal</th>
+      <th>Status</th>
+      <th>Button</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @achievements.each do |achievement| %>
+      <tr>
+        <td><%= achievement.player%></td>
+        <td><%= achievement.award %></td>
+        <td><%= achievement.medal %></td>
+        <td><%= achievement.status %></td>
+        <td><%= link_to 'Show', achievement, class:"btn btn-light" %>
+        <% if ((achievement.user == current_user) || (current_user.admin?)) %>
+        <%= link_to 'Edit', edit_achievement_path(achievement), class:"btn btn-light" %>
+        <%= link_to 'Destroy', achievement, class:"btn btn-light", method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+ <%= link_to 'New Achievement', new_achievement_path, class:"btn btn-secondary" %>
+

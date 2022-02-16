@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Message:</strong>
+  <%= @annoucement.message %>
+</p>
+
+<p>
+  <strong>Game:</strong>
+  <%= @annoucement.sport.sport_name %>
+</p>
+
+<%= link_to 'Edit', edit_sport_annoucement_path(@sport, @annoucement), class:"btn btn-secondary" %> |
+<%= link_to 'Back', sport_annoucements_path(@sport), class:"btn btn-secondary" %>
