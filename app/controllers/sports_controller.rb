@@ -23,7 +23,6 @@ def create
     render json: @sport.errors, status: :unprocessable_entity
  end
 end
-
 # PATCH/PUT /sports/1
 def update
  if @sport.update(sport_params)
