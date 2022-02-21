@@ -48,4 +48,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'active_model_serializers', '~> 0.10.13'
 
 #devise gem
-gem 'devise', '~> 4.8', '>= 4.8.1'
+gem 'devise'
+
+#token_auth
+gem 'devise_token_auth'
