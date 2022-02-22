@@ -5,17 +5,13 @@ class AnnouncementsController < ApplicationController
   
   # This action fetch all the announcements of sport
   def index
-    
-    announcements = @sport.announcements
-
+    announcements = @sport.announcement
     render_success 200, true, 'announcements fetched successfully', announcements.as_json
-    
   end
 
   # this action lets us create a new announcement
   def create
     announcement = @sport.announcements.new(announcement_params)
-
     if announcement.save
       render_success 200, true, 'announcement created successfully', announcement.as_json
     else
@@ -24,7 +20,6 @@ class AnnouncementsController < ApplicationController
       else
         errors = 'announcement creation failed'
       end
-
       return_error 500, false, errors, {}
     end
   end
@@ -39,7 +34,6 @@ class AnnouncementsController < ApplicationController
       else
         errors = 'announcement update failed'
       end
-
       return_error 500, false, errors, {}
     end
   end

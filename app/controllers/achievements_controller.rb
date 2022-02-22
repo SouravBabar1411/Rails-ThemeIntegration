@@ -5,38 +5,47 @@ class AchievementsController < ApplicationController
  # GET /achievements
  def index
    @achievements = Achievement.all
-
-   render json: @achievements
+   render_success 200, true, 'Achievement fetched successfully', @achievements.as_json
  end
 
  # GET /achievements/1
  def show
-   render json: @achievement
+  render_success 200, true, 'Achievement fetched successfully', @achievement.as_json
  end
 
  # POST /achievements
  def create
    @achievement = Achievement.new(achievement_params)
-
-   if @achievement.save
-     render json: @achievement, status: :created, location: @achievement  
-   else
-      render json: @achievement.errors, status: :unprocessable_entity
-   end
+    if @achievement.save
+      render_success 200, true, 'Achivement created successfully', @achievement.as_json
+    else
+      if @achievement.errors
+        errors = @achievement.errors.full_messages.join(", ")
+      else
+        errors = 'achievement creation failed'
+      end
+      return_error 500, false, errors, {}
+    end
  end
 
  # PATCH/PUT /achievements/1
  def update
-   if @achievement.update(achievement_params)
-     render json: @achievement
-   else
-     render json: @achievement.errors, status: :unprocessable_entity
-   end
- end
+    if @achievement.update(achievement_params)
+     render_success 200, true, 'achievement updated successfully', @achievement.as_json
+    else
+      if @achievement.errors
+        errors = @achievement.errors.full_messages.join(", ")
+      else
+        errors = 'achievement update failed'
+      end
+      return_error 500, false, errors, {}
+    end
+  end
 
  # DELETE /achievements/1
  def destroy
    @achievement.destroy
+   render_success 200, true, 'achievement deleted successfully', {}
  end
 
  private
