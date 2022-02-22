@@ -53,5 +53,3 @@ gem 'devise'
 #token_auth
 gem 'devise_token_auth'
 
-#kaminari gem for pagination
-gem 'kaminari'
