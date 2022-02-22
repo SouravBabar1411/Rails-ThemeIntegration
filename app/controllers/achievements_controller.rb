@@ -1,4 +1,5 @@
 class AchievementsController < ApplicationController
+    before_action :authenticate_user!
     before_action :set_achievement, only: [:update, :show, :destroy]
 
  # GET /achievements
