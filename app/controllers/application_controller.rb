@@ -1,12 +1,20 @@
 class ApplicationController < ActionController::API
   include DeviseTokenAuth::Concerns::SetUserByToken
+  ## Application Configs
+  rescue_from Exception, with: :exception_handling
+  
+  ## Callbacks
+  #before_action :validate_app_version
+
   protected
   def authenticate_user!(options = {})
     head :unauthorized unless signed_in?
   end
+
   def authenticate_current_user
     head :unauthorized if current_user_get.nil?
   end  
+
   ## Return Success Response
   def render_success code, status, message, data = {}
     render json: {
@@ -26,7 +34,13 @@ class ApplicationController < ActionController::API
       data: data
   }
   end
-    
+
+  ## Check for Latest App Version
+  def validate_app_version
+    if Rails.application.credentials[Rails.env.to_sym][:app_version].to_f > request.headers["app-version"].to_f
+      return_error 433, false, 'Please check your app version', {}
+    end
+  end
     
   ## Pagination Page Number
   def page

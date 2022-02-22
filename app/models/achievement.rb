@@ -1,4 +1,4 @@
-##schema information
+##====schema information
 #
 ##table name-->achievements
 #
