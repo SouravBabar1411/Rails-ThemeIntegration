@@ -36,6 +36,11 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :validatable
   include DeviseTokenAuth::Concerns::User
 
+  #validation
+  validate :name, :phone, presence: true
+  validates :phone, length: { is: 10 }
+  validates :phone, uniqueness: true
+
   #assosiation
   has_many :achievements
   
