@@ -7,9 +7,9 @@
 
 class Achievement < ApplicationRecord
     #validation
-    validate :award, presence: true
-    validate :medal, presence: true
-    
+    validates :award, presence: true
+    validates :medal, presence: true
+
     #assosiation
     belongs_to :user
 end

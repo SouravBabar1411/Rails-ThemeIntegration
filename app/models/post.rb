@@ -10,10 +10,10 @@
 
 class Post < ApplicationRecord
   #validation
-  validate :title, presence: true
-  validate :description, presence: true
-  validate :tag, presence: true
-  
+  validates :title, presence: true
+  validates :description, presence: true
+  validates :tag, presence: true
+
   #assosiation
   belongs_to :sport
 end

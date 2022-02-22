@@ -9,8 +9,8 @@
 
 class Announcement < ApplicationRecord
   #validation
-  validate :title, presence: true
-  validate :description, presence: true
+  validates :title, presence: true
+  validates :description, presence: true
 
   #assosiation
   belongs_to :sport

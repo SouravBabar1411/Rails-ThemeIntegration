@@ -6,7 +6,7 @@
 
 class Sport < ApplicationRecord
   #validation
-  validate :name, presence: true
+  validates :name, presence: true
 
   #assosiation
   has_many :posts
