@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_21_113027) do
+ActiveRecord::Schema.define(version: 2022_02_22_045512) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,6 +20,8 @@ ActiveRecord::Schema.define(version: 2022_02_21_113027) do
     t.string "medal"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.index ["user_id"], name: "index_achievements_on_user_id"
   end
 
   create_table "announcements", force: :cascade do |t|
@@ -74,5 +76,4 @@ ActiveRecord::Schema.define(version: 2022_02_21_113027) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true
   end
-
 end

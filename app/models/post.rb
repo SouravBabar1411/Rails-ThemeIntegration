@@ -9,6 +9,6 @@
 # t.index ["sport_id"], name: "index_posts_on_sport_id"
 
 class Post < ApplicationRecord
-    #assosiation
-    belongs_to :sport
+  #assosiation
+  belongs_to :sport
 end

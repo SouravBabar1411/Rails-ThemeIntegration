@@ -2,8 +2,10 @@
 #
 ##table name-->achievements
 #
-#t.string "award"
-#t.string "medal"
+#string: "award"
+#string: "medal"
 
 class Achievement < ApplicationRecord
+    #assosiation
+    belongs_to :user
 end
