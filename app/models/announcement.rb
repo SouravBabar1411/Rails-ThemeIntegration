@@ -8,6 +8,10 @@
 # t.index ["sport_id"], name: "index_announcements_on_sport_id"
 
 class Announcement < ApplicationRecord
+  #validation
+  validate :title, presence: true
+  validate :description, presence: true
+
   #assosiation
   belongs_to :sport
 end
