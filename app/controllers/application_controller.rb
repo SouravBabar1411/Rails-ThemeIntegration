@@ -1,7 +1,5 @@
 class ApplicationController < ActionController::API
   include DeviseTokenAuth::Concerns::SetUserByToken
-  ## Application Configs
-  #rescue_from Exception, with: :exception_handling
   
   ## Callbacks
   #before_action :validate_app_version
