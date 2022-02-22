@@ -5,6 +5,9 @@
 #t.string "name"
 
 class Sport < ApplicationRecord
+  #validation
+  validate :name, presence: true
+
   #assosiation
   has_many :posts
   has_many :announcements

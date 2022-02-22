@@ -13,6 +13,7 @@ class Post < ApplicationRecord
   validate :title, presence: true
   validate :description, presence: true
   validate :tag, presence: true
+  
   #assosiation
   belongs_to :sport
 end
