@@ -26,7 +26,6 @@
 # t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
 # t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true
 
-
 # frozen_string_literal: true
 class User < ActiveRecord::Base
   extend Devise::Models

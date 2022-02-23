@@ -3,13 +3,18 @@ class PostsController < ApplicationController
   before_action :set_sport
   before_action :set_post, only: [:update, :show, :destroy]
   
-  # This action will list all the posts for sport
+  #GET/sports/:sport_id/posts
   def index
     posts = @sport.posts(page).per(per_page)
     render_success 200, true, 'Posts fetched successfully', posts.as_json
   end
 
-  # this action will create new post
+  # GET/sports/:sport_id/posts
+  def show
+    render_success 200, true, 'Post fetched successfully', @post.as_json
+  end
+
+  # POST/sports/:sport_id/posts
   def create
     post = @sport.posts.new(post_params)
     if post.save
@@ -24,7 +29,7 @@ class PostsController < ApplicationController
     end
   end
 
-  # Update post API
+  # PUT/PATCH /sports/:sport_id/posts
   def update
     if @post.update(post_params)
       render_success 200, true, 'Post updated successfully', @post.as_json
@@ -38,12 +43,7 @@ class PostsController < ApplicationController
     end
   end
 
-  # Fetch an post API
-  def show
-    render_success 200, true, 'Post fetched successfully', @post.as_json
-  end
-
-  # Delete an post API
+  # DELETE /sports/:sport_id/posts
   def destroy
     @post.destroy
     render_success 200, true, 'Post deleted successfully', {}
@@ -54,7 +54,7 @@ class PostsController < ApplicationController
     @sport = Sport.where(id: params[:sport_id]).first
     
       unless @sport
-          return return_error 404, false, 'Product not found', {}
+          return return_error 404, false, 'Post not found', {}
       end
   end
 

@@ -3,13 +3,13 @@ class AnnouncementsController < ApplicationController
   before_action :set_sport
   before_action :set_announcement, only: [:update, :show, :destroy]
   
-  # This action fetch all the announcements of sport
+  # GET/sports/:sport_id/announcements
   def index
-    announcements = @sport.announcement
+    announcements = @sport.announcements
     render_success 200, true, 'announcements fetched successfully', announcements.as_json
   end
 
-  # this action lets us create a new announcement
+  # POST/sports/:sport_id/announcements
   def create
     announcement = @sport.announcements.new(announcement_params)
     if announcement.save && current_user.admin?
@@ -24,7 +24,7 @@ class AnnouncementsController < ApplicationController
     end
   end
 
-  # Update announcement API
+  # PATCH/PUT/ sports/:sport_id/announcements/
   def update
     if @announcement.update(announcement_params) && current_user.admin?
       render_success 200, true, 'announcement updated successfully', @announcement.as_json
@@ -38,12 +38,12 @@ class AnnouncementsController < ApplicationController
     end
   end
 
-  # Fetch an announcement API
+  # GET/sports/:sport_id/announcements
   def show
     render_success 200, true, 'announcement fetched successfully', @announcement.as_json
   end
 
-  # Delete an announcement API
+  # DELETE/sports/:sport_id/announcements
   def destroy
     if @announcement.destroy && current_user.admin?
       render_success 200, true, 'announcement deleted successfully', {}

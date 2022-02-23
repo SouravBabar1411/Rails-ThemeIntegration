@@ -2,11 +2,11 @@ class ApplicationController < ActionController::API
   include DeviseTokenAuth::Concerns::SetUserByToken
   
   ## Callbacks
-  #before_action :validate_app_version
+  before_action :validate_app_version
 
   ## Custom Authentication Error Message
   def render_authenticate_error
-    return_error 401, false, 'You need to sign in or sign up before continuing.', {}
+    return_error 401, false, 'You need to sign in or sign up ', {}
   end
 
   protected 
@@ -48,7 +48,7 @@ class ApplicationController < ActionController::API
     @per_page ||= params[:per_page] || 10
   end
     
-      ## Set Product & Return ERROR if not found
+  ## Set Product & Return ERROR if not found
   def set_sport
     @sport = Sport.where(id: params[:sport_id]).first
     

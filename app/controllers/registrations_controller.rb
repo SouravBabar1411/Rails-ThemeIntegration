@@ -9,15 +9,8 @@ class RegistrationsController < DeviseTokenAuth::RegistrationsController
     end
   end
 
-  def show
-    render json: User.find(params[:id])
-  rescue ActiveRecord::RecordNotFound
-    render json: {}, status: :not_found
-  end
-
   private
-
   def sign_up_params
-    params.require(:user).permit(:email,:password,:password_confirmation,:uid,:provider,:name)
+    params.require(:user).permit(:email,:password,:password_confirmation,:uid,:provider,:name,:phone)
   end
 end
