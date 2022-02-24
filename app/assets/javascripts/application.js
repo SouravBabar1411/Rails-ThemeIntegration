@@ -12,12 +12,12 @@
 //
 //= require rails-ujs
 //= require jquery 
+//= require jquery.turbolinks
 //= require jquery.validate
 // =require frontendvalidation
-// =require validation
 //= require select2-full
 //= require bootstrap
 //= require activestorage
-//= require jquery.turbolinks
 //= require datatables
+// =require validation
 //= require_tree .

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'get_dataset', to: 'sports#get_dataset'
   #resources :comments
   get 'hashtags/new'
   get 'hashtags/create'

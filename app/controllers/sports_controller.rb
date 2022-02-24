@@ -18,11 +18,15 @@ class SportsController < ApplicationController
   # GET /sports/1/edit
   def edit
   end
-
+  
+  #method for server side pagination
+  def get_dataset
+    render json: { sports: Sport.page(params[:page]).per(per_page) }  
+  end
+  
   # POST /sports or /sports.json
   def create
     @sport = Sport.new(sport_params)
-
     respond_to do |format|
       if @sport.save
         format.html { redirect_to sport_url(@sport), notice: "Sport was successfully created." }
@@ -61,6 +65,9 @@ class SportsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_sport
       @sport = Sport.find(params[:id])
+      #exception handling
+      rescue ActiveRecord::RecordNotFound => obj
+        redirect_to sports_path, notice: "oops record is not there.."
     end
 
     # Only allow a list of trusted parameters through.

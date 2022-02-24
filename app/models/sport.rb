@@ -4,7 +4,7 @@ class Sport < ApplicationRecord
   has_many :posts
   has_many :annoucements
   
-  #custom validation
+  #validation
   validates :sport_name, presence: true
   validates :total_player, presence: true
   validates :total_player, numericality: true
