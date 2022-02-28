@@ -9,7 +9,16 @@
 //
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
-//
+
+//= require plugin/cdn
+//= require plugin/all-min
+//= require plugin/scripts
+//= require plugin/Chartcdn
+//= require plugin/chart-area-demo
+//= require plugin/chart-bar-demo
+//= require plugin/simple-datatableslatest
+//= require plugin/datatables-simple-demo
+
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
