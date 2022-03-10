@@ -63,3 +63,5 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 #pry gem for debuging
 gem 'pry', '~> 0.14.1'
+
+gem 'jquery-rails'
