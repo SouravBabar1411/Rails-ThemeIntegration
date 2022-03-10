@@ -24,7 +24,14 @@ class SessionsController < DeviseTokenAuth::SessionsController
         render_success 200, true, 'Logged in successfully', @resource.as_json
       end
   end
+
     protected
+
+      def sign_in_params  
+        parameters = params.require(:user).permit(:email, :password)
+        parameters['password'] = DataDecryption.new.decrypted_data(parameters['password']) unless parameters['password'].blank?
+      end
+      
       ## Manage Strong Params
       def sign_up_params
         parameters = params.permit(:facebook_id,:email)

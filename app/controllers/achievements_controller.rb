@@ -30,7 +30,7 @@ class AchievementsController < ApplicationController
 
  # PATCH/PUT /achievements/1
  def update
-    if @achievement.update(achievement_params)
+    if @achievement.update(status_params) && current_user.admin?
      render_success 200, true, 'achievement updated successfully', @achievement.as_json
     else
       if @achievement.errors
@@ -38,7 +38,7 @@ class AchievementsController < ApplicationController
       else
         errors = 'achievement update failed'
       end
-      return_error 500, false, errors, {}
+      return_error 500, false, 'only admin can update achievement'
     end
   end
 
@@ -57,5 +57,10 @@ class AchievementsController < ApplicationController
    # Only allow a trusted parameter "white list" through.
    def achievement_params
       params.require(:achievement).permit(:award, :medal, :user_id)
+   end
+
+   #method for status
+   def status_params
+     params.require(:achievement).permit(:status)
    end
 end

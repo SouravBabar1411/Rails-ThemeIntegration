@@ -12,7 +12,7 @@ class Post < ApplicationRecord
   #validation
   validates :title, presence: true
   validates :description, presence: true
-  validates :tag, presence: true
+  #validates :tag, presence: true
 
   #assosiation
   belongs_to :sport
