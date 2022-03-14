@@ -1,12 +1,63 @@
 class BusinessesController < ApplicationController
-  before_action :set_business, only: [:edit, :update, :show]
+  before_action :set_business, only: ['show', 'edit', 'update', 'destroy']
 
   def index
+    @businesses = Business.all
+    respond_to do |format|
+      format.html
+      format.csv { send_data @businesses.to_csv(['name', 'address', 'start_date', 'end_date']) }
+    end
+  end
+ 
+  def show
   end
 
+ 
+  def new
+    @business = Business.new
+  end
+
+  def edit
+  end
+
+  def create
+    @business = Business.new(business_params)
+
+    respond_to do |format|
+      if @business.save
+        format.html { redirect_to business_url(@business), notice: "business was successfully created." }
+        format.json { render :show, status: :created, location: @business }
+      else
+        format.html { render :new, status: :unprocessable_entity }
+        format.json { render json: @business.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def update
+    respond_to do |format|
+      if @business.update(business_params)
+        format.html { redirect_to business_url(@business), notice: "business was successfully updated." }
+        format.json { render :show, status: :ok, location: @business }
+      else
+        format.html { render :edit, status: :unprocessable_entity }
+        format.json { render json: @business.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def destroy
+    @business.destroy
+
+    respond_to do |format|
+      format.html { redirect_to businesses_url, notice: "business was successfully destroyed." }
+      format.json { head :no_content }
+    end
+  end
+  
   def fetch_businesses
     #binding.pry
-    businesses = @campaign.businesses
+    businesses = Business.all
     search_string = []
     filter_query = ''
 
@@ -29,87 +80,31 @@ class BusinessesController < ApplicationController
     render json: {
         businesses: businesses.as_json(type: 'list'),
         draw: params['draw'].to_i,
-        recordsTotal: @campaign.businesses.count,
+        recordsTotal: businesses.count,
         recordsFiltered: businesses.total_count,
     }
   end
 
-  def new
-    @business = Business.new
-    @connect_facebook = @campaign.networks.current_active.where(platform: 'facebook').first
-    @connect_instagram = @campaign.networks.current_active.where(platform: 'instagram').first
-  end
-
-  def create
-    @business = Business.new(business_params)
-
-    respond_to do |format|
-      tags_association ## Manage Tags for a business
-      if @business.save
-        format.html { redirect_to admin_campaign_businesses_path(@campaign), success: 'business was successfully created.' }
-        format.json { render :index, status: :created }
-      else
-        format.html { render :new }
-        format.json { render json: @business.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  def edit
-    @connect_facebook = @campaign.networks.current_active.where(platform: 'facebook').first
-    @connect_instagram = @campaign.networks.current_active.where(platform: 'instagram').first
-  end
-
-  ## Remove a Tag From business
-  def remove_tag
-    @message = ''
-    begin
-      @business.tag_list.remove(params[:tag], parse: true) if params.has_key?('tag') && params[:tag].present?
-      @business.save!
-    rescue StandardError => e
-      @message = e.message
-    end
-  end
-
-  ## Add a Tag to business
-  def add_tag
-    @message = ''
-    begin
-      @business.tag_list.add(params[:tag].join(', '), parse: true) if params.has_key?('tag') && params[:tag].present?
-      @business.save!
-    rescue StandardError => e
-      @message = e.message
-    end
-  end
-
   private
 
-  ## Datatable Column List om which search can be performed
-  def search_columns
-    %w(name business_type)
-  end
+    ## Datatable Column List om which search can be performed
+    def search_columns
+      %w(name business_type)
+    end
 
-  ## Datatable Column List on which sorting can be performed
-  def sort_column
-    columns = %w(name points completions clicks start created_at)
-    columns[params[:order]['0'][:column].to_i - 1]
-  end
+    ## Datatable Column List on which sorting can be performed
+    def sort_column
+      columns = %w(name points completions clicks start created_at)
+      columns[params[:order]['0'][:column].to_i - 1]
+    end
 
-  def set_business
-    @business = @campaign.businesses.find_by(:id => params[:id]) rescue nil
-  end
 
-  ## Assign/Remove Tags to a business
-  def tags_association
-    tags = params[:business][:tags].reject { |c| c.empty? } if params[:business].has_key?('tags')
-    removed_tags = @business.tag_list - tags
+    def set_business
+      @business = Business.find(params[:id])
+    end
 
-    @business.tag_list.remove(removed_tags.join(', '), parse: true) if removed_tags.present?
-    @business.tag_list.add(tags.join(', '), parse: true) if tags.present?
-  end
-
-  ## Build Questions Params
-  def business_params
-    params.require(:business).permit(:name, :address, :logo, :working_hrs, :organization_id, :campaign_id)
-  end
+ 
+    def business_params
+      params.require(:business).permit(:name, :address, :start_date, :end_date)
+    end
 end

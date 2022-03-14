@@ -9,7 +9,12 @@
 //
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
+
 //= require jquery
+//= require rails-ujs
+//= require activestorage
+//= require datatables
+//= require validation
 //= require plugin/cdn
 //= require plugin/all-min
 //= require plugin/scripts
@@ -18,8 +23,5 @@
 //= require plugin/chart-bar-demo
 //= require plugin/simple-datatableslatest
 //= require plugin/datatables-simple-demo
-
-//= require rails-ujs
-//= require activestorage
 //= require turbolinks
 //= require_tree .
