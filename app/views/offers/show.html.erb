@@ -3,23 +3,28 @@
     <p id="notice"><%= notice %></p>
 
     <p>
+      <strong>Business:</strong>
+      <%= @offer.business.name %>
+    </p>
+
+     <p>
       <strong>Title:</strong>
-      <%= @offer.name %>
+      <%= @offer.title %>
     </p>
 
     <p>
       <strong>Description:</strong>
-      <%= @offer.address %>
+      <%= @offer.description %>
     </p>
 
     <p>
       <strong>start_date:</strong>
-      <%= @offer.start_date.strftime("at %I:%M %p %Y %m %d") %>
+      <%= @offer.start_date %>
     </p>
 
     <p>
       <strong>end_date:</strong>
-      <%= @offer.end_date.strftime("at %I:%M %p %Y %m %d") %>
+      <%= @offer.end_date %>
     </p>
 
       <%= link_to 'Edit', edit_offer_path, class:"btn btn-secondary" %> <br><br>

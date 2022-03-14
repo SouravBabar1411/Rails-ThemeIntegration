@@ -12,14 +12,20 @@
   <% end %>
 
   <div class="field form-group">
+    <%= form.label :business %>
+    <%= form.collection_select(:business_id, Business.all, :id, :name, { :prompt => 'Select a Business', :selected => @offer.business_id },{class: "form-control",placeholder: "Title"}) %>
+  </div>
+  <br>
+
+  <div class="field form-group">
     <%= form.label :title %>
-    <%= form.text_field :title, class: "form-control",placeholder: "Name" %>
+    <%= form.text_field :title, class: "form-control",placeholder: "Title" %>
   </div>
  <br>
   
   <div class="field form-group">
     <%= form.label :description %>
-    <%= form.text_field :description, class: "form-control",placeholder: "Address" %>
+    <%= form.text_field :description, class: "form-control",placeholder: "Description" %>
   </div>
   <br>
   

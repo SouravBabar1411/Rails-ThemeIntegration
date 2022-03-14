@@ -3,10 +3,6 @@ class OffersController < ApplicationController
 
   def index
     @offers = Offer.all
-    respond_to do |format|
-      format.html 
-      format.csv { send_data @offers.to_csv(['title', 'description', 'start_date', 'end_date']) }
-    end
   end
  
   def show
@@ -57,7 +53,7 @@ class OffersController < ApplicationController
   
   def fetch_offers
     #binding.pry
-    offers = offer.all
+    offers = Offer.all
     search_string = []
     filter_query = ''
 
@@ -94,13 +90,13 @@ class OffersController < ApplicationController
 
     ## Datatable Column List on which sorting can be performed
     def sort_column
-      columns = %w(name points completions clicks start created_at)
+      columns = %w(title points completions clicks start created_at)
       columns[params[:order]['0'][:column].to_i - 1]
     end
 
 
     def set_offer
-      @offer = offer.find(params[:id])
+      @offer = Offer.find(params[:id])
     end
 
  

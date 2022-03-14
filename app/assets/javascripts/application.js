@@ -14,7 +14,8 @@
 //= require rails-ujs
 //= require activestorage
 //= require datatables
-//= require validation
+//= require business
+//= require offer
 //= require plugin/cdn
 //= require plugin/all-min
 //= require plugin/scripts
