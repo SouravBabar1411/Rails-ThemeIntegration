@@ -14,12 +14,12 @@
 
     <p>
       <strong>start_date:</strong>
-      <%= @business.start_date %>
+      <%= @business.start_date.strftime("at %I:%M %p %Y %m %d") %>
     </p>
 
     <p>
       <strong>end_date:</strong>
-      <%= @business.end_date %>
+      <%= @business.end_date.strftime("at %I:%M %p %Y %m %d") %>
     </p>
 
       <%= link_to 'Edit', edit_business_path, class:"btn btn-secondary" %> <br><br>

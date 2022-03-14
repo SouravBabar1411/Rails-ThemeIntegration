@@ -64,8 +64,14 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 #pry gem for debuging
 gem 'pry', '~> 0.14.1'
 
+#gem for jquery
 gem 'jquery-rails'
 
+#gem for datatable
 gem "jquery-datatables", "~> 1.10"
 
+#gem for pagination
 gem 'kaminari'
+
+#gem for annotation
+gem 'annotate'

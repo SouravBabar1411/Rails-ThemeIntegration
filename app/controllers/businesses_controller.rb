@@ -4,7 +4,7 @@ class BusinessesController < ApplicationController
   def index
     @businesses = Business.all
     respond_to do |format|
-      format.html
+      format.html 
       format.csv { send_data @businesses.to_csv(['name', 'address', 'start_date', 'end_date']) }
     end
   end

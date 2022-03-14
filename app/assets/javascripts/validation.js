@@ -14,17 +14,34 @@ $(document).on("turbolinks:load", function() {
             { title: "Start Time", data: "start_date" },
             { title: "End Time", data: "end_date" },
             {
-                title: "Action",
                 data: null,
                 bSortable: false,
                 mRender: function(data, type, full) {
                     return (
-                        "<a class='dropdown-item' href = '/businesses/" + data.id + "/edit'" +
-                        "data-toggle='tooltip' data-placement='top' data-original-title='Edit Business'>" +
-                        "<i class='feather icon-edit-2'></i> Edit</a>"
+                        '<a class="btn btn-info btn-sm" href="/businesses/' +
+                        data.id +
+                        "/edit" +
+                        '">' +
+                        "Edit" +
+                        "</a>"
                     );
                 },
             },
+            {
+                data: null,
+                bSortable: false,
+                mRender: function(data, type, full) {
+                    return (
+                        '<a class="btn btn-danger btn-sm" href="/businesses/' +
+                        data.id +
+                        "/destroy" +
+                        '">' +
+                        "Destroy" +
+                        "</a>"
+                    );
+                },
+            },
+
         ],
         order: [
             ["1", "desc"]
