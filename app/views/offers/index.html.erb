@@ -1,1 +1,14 @@
-<h1>hiiii</h1>
+<div class="card">
+  <div class="card-header">
+    <h4>Offer List</h4>
+    <div class="card-body">
+      <div class="form-group">
+        <%= link_to "Export CSV", offers_path(format: "csv"), class: 'btn btn-primary' %>
+      </div><br>
+      <table class="table table-bordered table-striped sport-id-class" id='player'> 
+      </table>    
+      <%= link_to 'New offer', new_offer_path, class: "btn btn-dark" %>
+    </div>
+  </div>
+</div>
+<br>

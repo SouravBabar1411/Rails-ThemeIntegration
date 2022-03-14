@@ -14,7 +14,7 @@ class OffersController < ApplicationController
 
  
   def new
-    @offer = offer.new
+    @offer = Offer.new
   end
 
   def edit
@@ -105,6 +105,6 @@ class OffersController < ApplicationController
 
  
     def offer_params
-      params.require(:offer).permit(:title, :description, :start_date, :end_date)
+      params.require(:offer).permit(:title, :description, :start_date, :end_date, :business_id)
     end
 end

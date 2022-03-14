@@ -1,0 +1,28 @@
+<div class="card">
+  <div class="card-header">
+    <p id="notice"><%= notice %></p>
+
+    <p>
+      <strong>Title:</strong>
+      <%= @offer.name %>
+    </p>
+
+    <p>
+      <strong>Description:</strong>
+      <%= @offer.address %>
+    </p>
+
+    <p>
+      <strong>start_date:</strong>
+      <%= @offer.start_date.strftime("at %I:%M %p %Y %m %d") %>
+    </p>
+
+    <p>
+      <strong>end_date:</strong>
+      <%= @offer.end_date.strftime("at %I:%M %p %Y %m %d") %>
+    </p>
+
+      <%= link_to 'Edit', edit_offer_path, class:"btn btn-secondary" %> <br><br>
+      <%= link_to 'Back', offers_path, class:"btn btn-secondary"%>
+   </div>
+</div>
