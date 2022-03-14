@@ -89,7 +89,7 @@ class BusinessesController < ApplicationController
 
     ## Datatable Column List om which search can be performed
     def search_columns
-      %w(name business_type)
+      %w(name address)
     end
 
     ## Datatable Column List on which sorting can be performed
