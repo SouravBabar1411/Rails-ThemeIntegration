@@ -10,5 +10,9 @@
 #  updated_at  :datetime         not null
 #
 class Offer < ApplicationRecord
+  #Association
   belongs_to :business
+
+  #Validation
+  validates :title, :description, :start_date, :end_date, presence: true
 end

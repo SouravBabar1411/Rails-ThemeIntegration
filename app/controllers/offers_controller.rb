@@ -53,9 +53,11 @@ class OffersController < ApplicationController
   
   def fetch_offers
     #binding.pry
-    offers = Offer.all
     search_string = []
     filter_query = ''
+    response = []
+    offers = Offer.all
+    businesses = Business.all
 
     ## Check if Search Keyword is Present & Write it's Query
     if params.has_key?('search') && params[:search].has_key?('value') && params[:search][:value].present?
@@ -73,8 +75,16 @@ class OffersController < ApplicationController
     offers = offers.order("#{sort_column} #{datatable_sort_direction}") unless sort_column.nil?
     offers = offers.page(datatable_page).per(datatable_per_page)
 
+    offers.each do |offer|
+      json = offer.as_json
+      json['business_name'] = offer.business.name
+      json['start'] = offer.start_date.strftime("at %I:%M %p %Y %m %d")
+      json['end'] = offer.end_date.strftime("at %I:%M %p %Y %m %d")
+      response.push(json)
+    end 
+
     render json: {
-        offers: offers.as_json(type: 'list'),
+        offers: response,
         draw: params['draw'].to_i,
         recordsTotal: offers.count,
         recordsFiltered: offers.total_count,

@@ -11,8 +11,8 @@ $(document).on("turbolinks:load", function() {
         columns: [
             { title: "Business Name", data: "name" },
             { title: "Business Address", data: "address" },
-            { title: "Start Time", data: "start_date" },
-            { title: "End Time", data: "end_date" },
+            { title: "Start Time", data: "start" },
+            { title: "End Time", data: "end" },
             {
                 data: null,
                 bSortable: false,
@@ -28,18 +28,13 @@ $(document).on("turbolinks:load", function() {
                 },
             },
             {
-                data: null,
-                bSortable: false,
-                mRender: function(data, type, full) {
-                    return (
-                        '<a class="btn btn-danger btn-sm" href="/businesses/' +
-                        data.id +
-                        "/destroy" +
-                        '">' +
-                        "Destroy" +
-                        "</a>"
-                    );
-                },
+                "data": null,
+                "bSortable": false,
+                "mRender": function(data, type, full) {
+                    return "<a class='btn btn-info btn-sm' href = '/businesses/" + data.id +
+                        "data-confirm='Are you sure?' data-method='delete' >" +
+                        'Delete' + '</a>';
+                }
             },
 
         ],
