@@ -2,9 +2,15 @@
   <div class="card-header">
     <h4>Offer List</h4>
     <div class="card-body">
-      <table class="table table-bordered table-striped sport-id-class" id='offer'> 
-      </table>    
-      <%= link_to 'New offer', new_offer_path, class: "btn btn-dark" %>
+    <%= select_tag :businesses,
+                   options_for_select(all_business_humanize),
+                   class: 'business-sidebar'%>
+                   <div name="businesses", style="padding-top: 5px;">
+    <br><br>
+
+    <table class="table table-bordered table-striped sport-id-class" id='offer'> 
+    </table>    
+    <%= link_to 'New offer', new_offer_path, class: "btn btn-dark" %>
     </div>
   </div>
 </div>

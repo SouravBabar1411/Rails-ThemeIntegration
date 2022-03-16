@@ -45,4 +45,32 @@ $(document).on("turbolinks:load", function() {
             ["1", "desc"]
         ],
     });
+
+    function generateFilterParams() {
+        var filters = {
+            business_id: [$("#businesses :selected").val()],
+        }
+        $("select[name='businesses']:selected").each(function() {
+            filters['business_id'].push($(this).data('val'));
+        });
+
+        return filters;
+    }
+
+    function applyFilters(filters) {
+        console.log("hello", filters);
+        if (filters != '') {
+            // var id = $(this).attr("business_id");
+            $('#offer').DataTable().ajax.url(
+                    "/fetch_offers" + "?filters=" + JSON.stringify(filters)
+                )
+                .load() //checked
+        } else {
+            $('#offer').DataTable().ajax.reload();
+        }
+    }
+    $('.business-sidebar').change(function() {
+        console.log("hiii");
+        applyFilters(generateFilterParams());
+    });
 });

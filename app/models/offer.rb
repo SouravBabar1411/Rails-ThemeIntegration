@@ -15,4 +15,8 @@ class Offer < ApplicationRecord
 
   #Validation
   validates :title, :description, :start_date, :end_date, presence: true
+
+  def self.search(search)
+    where("business_id  LIKE ?","%#{search}")
+  end
 end

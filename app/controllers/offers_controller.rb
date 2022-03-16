@@ -2,10 +2,10 @@ class OffersController < ApplicationController
   before_action :set_offer, only: ['show', 'edit', 'update', 'destroy']
 
   def index
-    @offers = Offer.all
   end
  
   def show
+    
   end
 
  
@@ -64,14 +64,14 @@ class OffersController < ApplicationController
       search_columns.each do |term|
         search_string << "#{term} ILIKE :search"
       end
-      offers = offers.where(search_string.join(' OR '), search: "%#{params[:search][:value]}%")
     end
 
     if params["filters"].present?
       filters = JSON.parse(params["filters"].gsub("=>", ":").gsub(":nil,", ":null,"))
-      offers = offers.offer_side_bar_filter(filters)
+      offers = offers.where(business_id: filters['business_id']) if filters['business_id'].present?
     end
 
+    offers = offers.where(search_string.join(' OR '), search: "%#{params[:search][:value]}%")
     offers = offers.order("#{sort_column} #{datatable_sort_direction}") unless sort_column.nil?
     offers = offers.page(datatable_page).per(datatable_per_page)
 
