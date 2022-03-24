@@ -2,7 +2,7 @@ class OffersController < ApplicationController
   before_action :set_offer, only: ['show', 'edit', 'update', 'destroy']
 
   def index
-    @offers = Offer.with_long_title
+    @offers = Offer.this_month.last_month.with_long_title.today
   end
  
   def show

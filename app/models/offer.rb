@@ -20,6 +20,9 @@ class Offer < ApplicationRecord
   validates :title, presence: true
   
   scope :with_long_title, -> { where("LENGTH(title) > 6") }
+  scope :this_month, -> { where(:start_date => Time.now.beginning_of_month..Time.now.end_of_month) }
+  scope :last_month, -> { where(:created_at => 1.months.ago.beginning_of_month..1.months.ago.end_of_month) }
+  scope :today, -> {where(:created_at => Time.now.beginning_of_day..Time.now.end_of_day)}
 
   private
 
