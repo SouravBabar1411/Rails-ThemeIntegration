@@ -1,6 +1,6 @@
 $(document).on("turbolinks:load", function() {
     $("#offer").DataTable({
-        lengthMenu: [5, 10, 15, 25, 50],
+        lengthMenu: [10, 15, 25, 50],
         ajax: {
             url: "/fetch_offers",
             dataSrc: "offers",
@@ -19,12 +19,8 @@ $(document).on("turbolinks:load", function() {
                 bSortable: false,
                 mRender: function(data, type, full) {
                     return (
-                        '<a class="btn btn-info btn-sm" href="/offers/' +
-                        data.id +
-                        "/edit" +
-                        '">' +
-                        "Edit" +
-                        "</a>"
+                        '<a class="btn btn-info btn-sm" href="/offers/' + data.id +
+                        "/edit" + '">' + "Edit" + "</a>"
                     );
                 },
             },
@@ -39,8 +35,17 @@ $(document).on("turbolinks:load", function() {
                     );
                 }
             },
-
+            {
+                data: null,
+                bSortable: false,
+                mRender: function(data, type, full) {
+                    return (
+                        '<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"' + data.id + 'Audit' + "</button>"
+                    );
+                },
+            },
         ],
+
         order: [
             ["1", "desc"]
         ],

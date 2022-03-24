@@ -5,6 +5,7 @@
       <div class="form-group">
         <%= link_to "Export CSV", businesses_path(format: "csv"), class: 'btn btn-primary' %>
       </div><br>
+      <%= render 'businessaudit'%><br><br>
       <table class="table table-bordered table-striped sport-id-class" id='player'> 
       </table>    
       <%= link_to 'New business', new_business_path, class: "btn btn-dark" %>

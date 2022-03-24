@@ -10,13 +10,24 @@
 #  updated_at  :datetime         not null
 #
 class Offer < ApplicationRecord
+  before_validation :cap_name
+  before_save :demo_msg
+  audited
   #Association
   belongs_to :business
 
   #Validation
-  validates :title, :description, :start_date, :end_date, presence: true
+  validates :title, presence: true
+  
+  scope :with_long_title, -> { where("LENGTH(title) > 6") }
 
-  def self.search(search)
-    where("business_id  LIKE ?","%#{search}")
+  private
+
+  def cap_name
+    self.title = title.downcase.titleize
+  end
+  
+  def demo_msg
+    puts 'Its before save callback'
   end
 end

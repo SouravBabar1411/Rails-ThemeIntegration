@@ -75,3 +75,8 @@ gem 'kaminari'
 
 #gem for annotation
 gem 'annotate'
+
+#audit gem
+gem "audited", "~> 5.0"
+
+gem 'whenever', require: false

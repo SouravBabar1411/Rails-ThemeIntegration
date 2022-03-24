@@ -6,8 +6,8 @@
                    options_for_select(all_business_humanize),
                    class: 'business-sidebar'%>
                    <div name="businesses", style="padding-top: 5px;">
-    <br><br>
-
+    <br>
+    <%= render 'offeraudit'%><br><br>
     <table class="table table-bordered table-striped sport-id-class" id='offer'> 
     </table>    
     <%= link_to 'New offer', new_offer_path, class: "btn btn-dark" %>
