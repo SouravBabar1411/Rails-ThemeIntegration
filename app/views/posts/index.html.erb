@@ -23,7 +23,7 @@
         <td><%= post.description %></td>
         <td><%= link_to 'Show', [@sport,post], class:"btn btn-light" %>
           <%= link_to 'Edit', edit_sport_post_path(@sport, post), class:"btn btn-light" %>
-          <%= link_to 'Destroy', [@sport, post], method: :delete, data: { confirm: 'Are you sure?' } , class:"btn btn-light"%></td>
+          <%= link_to 'Destroy', [@sport, post], method: :delete, data: { confirm: 'Are you sure?' } , class:"btn btn-light", :remote => true, :class => 'delete_post'%></td>
       </tr>
     <% end %>
   </tbody>
