@@ -56,7 +56,7 @@ class PostsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to sport_posts_path(@sport), notice: "Post was successfully destroyed." }
       format.json { head :no_content }
-      format.js   { render :layout => false }}
+      format.js   { render :layout => false }
     end
   end
 
